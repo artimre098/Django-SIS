@@ -17,11 +17,11 @@
   --font-secondary: "Poppins", sans-serif;
 }
 
-/* Colors */
+/* Colors 008374; sec f85a40*/
 :root {
   --color-default: #222222;
   --color-primary: #008374;
-  --color-secondary: #f85a40;
+  --color-secondary: #FFA447;
 }
 
 /* Smooth scroll behavior */
