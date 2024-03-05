@@ -1,1 +1,1 @@
-web: gunicorn dcrm.wsgi
+web: gunicorn SISIT.wsgi
