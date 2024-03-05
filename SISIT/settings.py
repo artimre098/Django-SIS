@@ -65,26 +65,26 @@ WSGI_APPLICATION = 'SISIT.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'acs',
-#         'USER' :'root',
-#         'PASSWORD' : '',
-#         'HOST':'localhost',
-#         'PORT' : '3306',
-#     }
-# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME':'railway',
-        'USER':'postgres',
-        'PASSWORD': 'bc-cB-62*-b-D4cG5BAae3EaD4gA646D',
-        'HOST':'monorail.proxy.rlwy.net',
-        'PORT':'22823',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'acs',
+        'USER' :'root',
+        'PASSWORD' : '',
+        'HOST':'localhost',
+        'PORT' : '3306',
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME':'railway',
+#         'USER':'postgres',
+#         'PASSWORD': 'bc-cB-62*-b-D4cG5BAae3EaD4gA646D',
+#         'HOST':'monorail.proxy.rlwy.net',
+#         'PORT':'22823',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
