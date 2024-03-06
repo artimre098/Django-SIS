@@ -31,7 +31,7 @@ def acs(request):
 
 def logout_user(request):
 	logout(request)
-	messages.success(request,"You have been Looged Out...")
+	messages.success(request,"You have been Logged Out...")
 	return redirect('acs')
 	
 
