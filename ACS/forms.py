@@ -71,7 +71,7 @@ class AddRecordForm(forms.ModelForm):
         # Save the Record instance
 		record = super(AddRecordForm, self).save(commit=False)
         
-        # Create a new user with first_name and last_name as username and password
+        # Create a new user with student_id as username and password
 		user = User.objects.create_user(username=self.cleaned_data['student_id'],password=self.cleaned_data['student_id'])
         
         # Link the new user to the Record instance
