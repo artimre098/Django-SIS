@@ -40,8 +40,13 @@ def register(request):
         form = AddRecordForm(request.POST)
         if form.is_valid():
             form.save()
+            username = form.cleaned_data['student_id']
+            password = form.cleaned_data['student_id']
+            user = authenticate(username=username,password=password)
+            login(request,user)
+            messages.success(request,"You have successfully registered")
+            return redirect('home')
             
-
-
-
-    return render(request,'admin/register.html',{})
+    else:
+        form = AddRecordForm()
+        return render(request, 'admin/register.html',{'form':form})

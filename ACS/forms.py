@@ -39,13 +39,30 @@ class AddRecordForm(forms.ModelForm):
         ('3rd', '3rd Year'),
         ('4th', '4th Year'),
     ]
-	 
+
+	GENDER_CHOICES = [ ('Male', 'Male'),
+        ('Female', 'Female'),
+        ('Others', 'Others'),
+	]
+	USER_CHOICES = [ ('1', 'Year Level Treasurer'),
+        ('2', 'Department Treasurer'),
+	]
+	BIRTHDAY_CHOICES = [
+        (year) for year in range(1950, 2023)
+    ]
+	
 	student_id =  forms.CharField(required=True,label="",max_length=100,widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Student ID'}))
 	first_name =  forms.CharField(required=True,label="",max_length=100,widget=forms.TextInput(attrs={'class':'form-control','placeholder':'First Name'}))
 	last_name = forms.CharField(required=True,label="",max_length=100,widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Last Name'}))
-	year_level = forms.ChoiceField(choices=YEAR_CHOICES, required=True, label="", widget=forms.Select(attrs={'class': 'form-control', 'placeholder': 'Year Level'}))
+	year_level = forms.ChoiceField(choices=YEAR_CHOICES, required=True, label="Year Level", widget=forms.Select(attrs={'class': 'form-control', 'placeholder': 'Year Level'}))
 	email = forms.CharField(required=True,label="",max_length=100,widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Email Address'}))
-	
+	gender = forms.ChoiceField(choices=GENDER_CHOICES, required=True, label="Gender", widget=forms.Select(attrs={'class': 'form-control', 'placeholder': 'Gender'}))
+	birthday = forms.DateField(required=True, label="Birthday", widget=forms.SelectDateWidget(attrs={'class': 'form-control'}, years=BIRTHDAY_CHOICES))
+	address =  forms.CharField(required=True,label="",max_length=100,widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Address'}))
+	city = forms.CharField(required=True,label="",max_length=100,widget=forms.TextInput(attrs={'class':'form-control','placeholder':'City'}))
+	phone =  forms.CharField(required=True,label="",max_length=100,widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Cellphone Number'}))
+	role = forms.ChoiceField(choices=USER_CHOICES, required=True, label="", widget=forms.Select(attrs={'class': 'form-control', 'placeholder': 'Role'}))
+    
 	class Meta:
 		model = Record
 		exclude = ("user",)
@@ -55,7 +72,7 @@ class AddRecordForm(forms.ModelForm):
 		record = super(AddRecordForm, self).save(commit=False)
         
         # Create a new user with first_name and last_name as username and password
-		user = User.objects.create_user(username=self.cleaned_data['first_name'],password=self.cleaned_data['last_name'])
+		user = User.objects.create_user(username=self.cleaned_data['student_id'],password=self.cleaned_data['student_id'])
         
         # Link the new user to the Record instance
 		record.user = user
