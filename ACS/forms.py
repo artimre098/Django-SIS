@@ -44,8 +44,8 @@ class AddRecordForm(forms.ModelForm):
         ('Female', 'Female'),
         ('Others', 'Others'),
 	]
-	USER_CHOICES = [ ('1', 'Year Level Treasurer'),
-        ('2', 'Department Treasurer'),
+	USER_CHOICES = [ ('1', 'Student'),('2', 'Year Level Treasurer'),
+        ('3', 'Department Treasurer'),
 	]
 	BIRTHDAY_CHOICES = [
         (year) for year in range(1950, 2023)
@@ -61,7 +61,7 @@ class AddRecordForm(forms.ModelForm):
 	address =  forms.CharField(required=True,label="",max_length=100,widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Address'}))
 	city = forms.CharField(required=True,label="",max_length=100,widget=forms.TextInput(attrs={'class':'form-control','placeholder':'City'}))
 	phone =  forms.CharField(required=True,label="",max_length=100,widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Cellphone Number'}))
-	role = forms.ChoiceField(choices=USER_CHOICES, required=True, label="", widget=forms.Select(attrs={'class': 'form-control', 'placeholder': 'Role'}))
+	role = forms.ChoiceField(choices=USER_CHOICES, required=True, label="", widget=forms.Select(attrs={'class': 'form-control','style':'display:none', 'placeholder': 'Role'}),initial=USER_CHOICES[0][0] )
     
 	class Meta:
 		model = Record
