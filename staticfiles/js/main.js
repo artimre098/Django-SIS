@@ -256,6 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
         filter: portfolioFilter,
         sortBy: portfolioSort
       });
+      alert("Hello World");
 
       let menuFilters = document.querySelectorAll('.portfolio-isotope .portfolio-flters li');
       menuFilters.forEach(function(el) {
