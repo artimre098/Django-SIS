@@ -17,11 +17,11 @@
   --font-secondary: "Poppins", sans-serif;
 }
 
-/* Colors 008374; sec f85a40*/
+/* Colors */
 :root {
   --color-default: #222222;
   --color-primary: #008374;
-  --color-secondary: #FFA447;
+  --color-secondary: #f85a40;
 }
 
 /* Smooth scroll behavior */
@@ -1146,19 +1146,16 @@ section {
 }
 
 .portfolio .portfolio-wrap {
-  background-color: white;
-  box-shadow: 0px 10px 30px rgb(255, 255, 255);
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   height: 100%;
   overflow: hidden;
-  
 }
 
 .portfolio .portfolio-wrap img {
   transition: 0.3s;
   position: relative;
   z-index: 1;
-  
 }
 
 .portfolio .portfolio-wrap .portfolio-info {
@@ -1168,7 +1165,6 @@ section {
   border-top: 1px solid #f3f3f3;
   z-index: 2;
 }
-
 
 .portfolio .portfolio-wrap .portfolio-info h4 {
   font-size: 18px;
@@ -1184,7 +1180,7 @@ section {
 .portfolio .portfolio-wrap .portfolio-info h4 a:hover {
   color: var(--color-primary);
 }
-/*  */
+
 .portfolio .portfolio-wrap .portfolio-info p {
   color: #6c757d;
   font-size: 14px;
@@ -1196,12 +1192,6 @@ section {
   transform: scale(1.1);
 }
 
-.equal-img {
-  object-fit: cover;
-  height: 100vh;
-}
-
-
 /*--------------------------------------------------------------
 # Portfolio Details Section
 --------------------------------------------------------------*/
@@ -1212,7 +1202,7 @@ section {
 .portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet {
   width: 12px;
   height: 12px;
-  background-color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0.7);
   opacity: 1;
 }
 
@@ -1228,7 +1218,7 @@ section {
 
 .portfolio-details .swiper-button-prev:after,
 .portfolio-details .swiper-button-next:after {
-  color: rgb(255, 255, 255);
+  color: rgba(255, 255, 255, 0.8);
   background-color: rgba(0, 0, 0, 0.2);
   font-size: 24px;
   border-radius: 50%;
@@ -1242,7 +1232,7 @@ section {
 
 .portfolio-details .swiper-button-prev:hover:after,
 .portfolio-details .swiper-button-next:hover:after {
-  background-color: rgb(255, 255, 255);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 @media (max-width: 575px) {
