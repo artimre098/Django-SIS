@@ -7,6 +7,13 @@
         <h1>IT<span> Department</span></h1>
       </a>
       <nav id="navbar" class="navbar">
+        {% if user.is_authenticated %}
+        <ul>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+          </li>
+        </ul>
+        {% else %}
         <ul>
           <li><a href="#hero">Home</a></li>
           <li><a href="#about">About</a></li>
@@ -33,6 +40,7 @@
           </li>
           <li><a href="#contact">Contact</a></li>
         </ul>
+        {% endif %}
       </nav><!-- .navbar -->
 
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
