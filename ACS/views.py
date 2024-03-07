@@ -43,9 +43,8 @@ def register(request):
             username = form.cleaned_data['student_id']
             password = form.cleaned_data['student_id']
             user = authenticate(username=username,password=password)
-            login(request,user)
-            messages.success(request,"You have successfully registered")
-            return redirect('home')
+            messages.success(request,"Student successfully registered")
+            return redirect('acs')
             
     else:
         form = AddRecordForm()
