@@ -5,7 +5,11 @@
 	
 		
 {% if user.is_authenticated %}		
-    
+  {% for record in records %}
+    {% if record.student_id == user.username %}
+        <h2>Welcome {{ record.first_name }} {{ record.last_name }}</h2>
+    {% endif %}
+  {% endfor %}
     <div class="container">
         <div class="row">
             <div class="d-grid gap-2 col-4 mx-auto">
@@ -30,7 +34,8 @@
 
 		<form method="POST" action="{% url 'acs' %}">
 		{% csrf_token%}
-			
+
+
 			  <div class="mb-3">
 			   
 			    <input type="text" class="form-control" name="username" placeholder="Username" required>

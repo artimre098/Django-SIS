@@ -27,7 +27,7 @@ def acs(request):
 			messages.success(request,"There was an error Logging in, Please try again...")
 			return redirect('acs')
 	else:
-		return render(request,'admin/admin-home.html',{})
+		return render(request,'admin/admin-home.html',{'records':records})
 
 def logout_user(request):
 	logout(request)
@@ -53,7 +53,7 @@ def register(request):
 
 def student_record(request,pk):
 	if request.user.is_authenticated:
-		student_record = Record.objects.get(id=pk)
+		student_record = Record.objects.get(Record.student_id)
 		return render(request,'students-record.html',{'student_record':student_record})
 	else:
 		messages.success(request,"You must be logged in to view that page")
