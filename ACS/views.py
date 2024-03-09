@@ -49,3 +49,12 @@ def register(request):
     else:
         form = AddRecordForm()
         return render(request, 'admin/register.html',{'form':form})
+
+
+def student_record(request,pk):
+	if request.user.is_authenticated:
+		student_record = Record.objects.get(id=pk)
+		return render(request,'students-record.html',{'student_record':student_record})
+	else:
+		messages.success(request,"You must be logged in to view that page")
+		return redirect('acs')

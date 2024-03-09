@@ -6,4 +6,5 @@ urlpatterns = [
     path('acs',views.acs ,name='acs'),
     path('register/',views.register ,name='register'),
     path('logout/',views.logout_user, name='logout'),
+    path('students/<int:pk>',views.student_record, name='students'),
 ]
