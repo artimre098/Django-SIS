@@ -10,6 +10,8 @@
         <h2>Welcome {{ record.first_name }} {{ record.last_name }}</h2>
     {% endif %}
   {% endfor %}
+  
+  {% if user.is_staff %}
     <div class="container">
         <div class="row">
             <div class="d-grid gap-2 col-4 mx-auto">
@@ -23,6 +25,10 @@
             </div>
     </div>
     </div>
+  {% else %}
+    
+    <h2>Welcome non staff</h2>
+  {% endif %}
     
 
 	
