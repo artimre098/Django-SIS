@@ -12,7 +12,6 @@ class Record(models.Model):
     birthday = models.CharField(max_length=20)
     address = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
-    birthday = models.CharField(max_length=50)
     email = models.CharField(max_length=50)
     phone = models.CharField(max_length=15)
     role = models.CharField(max_length=50)

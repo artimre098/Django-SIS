@@ -4,8 +4,23 @@
 
 
 
-
-        <h2>Welcome {{ record.first_name }} {{ record.last_name }}</h2>
-  
-
+<div class="col-md-8 offset-md-3">
+        <!-- <h2>Welcome {{ record.first_name }} {{ record.last_name }}</h2> -->
+        <h5> Student Record</h5>
+        <div class="card" style="width: 35rem;">
+                <div class="card-body">
+                  
+                  <h5 class="card-title mb-2 text-muted">{{record.first_name}} {{record.last_name}}</h5>
+                  <h6 class="card-subtitle">{{record.student_id}}</h6> <br/>
+                  <p class="card-text">Year Level: {{record.year_level}} Year</p>
+                  <p class="card-text">Gender: {{record.gender}}</p>
+                  <p class="card-text">Birthday: {{record.birthday}}</p>
+                  <p class="card-text">Address: {{record.address}}, {{record.city}}</p>
+                  <p class="card-text">Email: {{record.email}}</p>
+                  <p class="card-text">Phone: {{record.phone}}</p>
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                </div>
+        </div>
+</div>
 {% endblock %}
