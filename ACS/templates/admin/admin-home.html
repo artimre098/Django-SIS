@@ -27,7 +27,19 @@
     </div>
   {% else %}
     
-    <h2>Welcome non staff</h2>
+    <div class="container">
+      <div class="row">
+          <div class="d-grid gap-2 col-4 mx-auto">
+          <a href="{% url 'students' user.username %}" class="btn btn-primary" type="button"> View Details</a>
+          </div>
+          <div class="d-grid gap-2 col-4 mx-auto">
+              <button class="btn btn-success" type="button">Edit Student</button>
+          </div>
+          <div class="d-grid gap-2 col-4 mx-auto">
+              <button class="btn btn-danger" type="button">Delete Student</button>
+          </div>
+      </div>
+  </div>
   {% endif %}
     
 
