@@ -1,0 +1,61 @@
+<header id="header" class="header d-flex align-items-center">
+
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+      <a href="#about" class="logo d-flex align-items-center">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1>IT<span> Department</span></h1>
+      </a>
+      <nav id="navbar" class="navbar">
+        {% if user.is_authenticated %}
+        <ul>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'acs' %}">Admin</a>
+          </li>
+        
+          <!-- <li class="nav-item">
+            <a class="nav-link" href=" url 'students' user.username %}">Record</a>
+          </li>
+           -->
+            
+          
+          
+          <li class="dropdown"><a href="#"><span>Menu</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+            <ul>
+              <li><a href="{% url 'home' %}">Home</a></li>
+              <li><a href="{% url 'home' %}#about">About</a></li>
+              <li><a href="{% url 'home' %}#portfolio">Officers</a></li>
+              <li><a href="{% url 'home' %}#team">Instructors</a></li>
+            </ul>
+          </li>
+          </li>
+          <li><a href="{% url 'home' %}#contact">Contact</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+          </li>
+        </ul>
+        {% else %}
+        <ul>
+          <li><a href="{%url 'home'%}">Home</a></li>
+          <li><a href="{% url 'home' %}#about">About</a></li>
+          <li><a href="{% url 'home' %}#services">Services</a></li>
+          <li><a href="{% url 'home' %}#portfolio">Officers</a></li>
+          <li><a href="{% url 'home' %}#team">Instructors</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          
+          <li class="dropdown"><a href="#contact"><span>Contact</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+            <ul>
+              <li><a href="{% url 'acs'%}">Login</a></li>
+            </ul>
+          </li>
+          
+        </ul>
+        {% endif %}
+      </nav><!-- .navbar -->
+
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+    </div>
+  </header>

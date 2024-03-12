@@ -1,0 +1,75 @@
+{% extends 'admin/admin-base.html' %}
+{% load static %}
+{% block content %}
+
+	
+		
+{% if user.is_authenticated %}		
+  {% for record in records %}
+    {% if record.student_id == user.username %}
+        <h2>Welcome {{ record.first_name }} {{ record.last_name }}</h2>
+    {% endif %}
+  {% endfor %}
+  
+  {% if user.is_staff %}
+    <div class="container">
+        <div class="row">
+            <div class="d-grid gap-2 col-4 mx-auto">
+            <a href="{% url 'register' %}" class="btn btn-primary" type="button"> Add Student </a>
+            </div>
+            <div class="d-grid gap-2 col-4 mx-auto">
+                <button class="btn btn-success" type="button">Edit Student</button>
+            </div>
+            <div class="d-grid gap-2 col-4 mx-auto">
+                <button class="btn btn-danger" type="button">Delete Student</button>
+            </div>
+    </div>
+    </div>
+  {% else %}
+    
+    <div class="container">
+      <div class="row">
+          <div class="d-grid gap-2 col-4 mx-auto">
+          <a href="{% url 'students' user.username %}" class="btn btn-primary" type="button"> View Details</a>
+          </div>
+          <div class="d-grid gap-2 col-4 mx-auto">
+              <button class="btn btn-success" type="button">Edit Student</button>
+          </div>
+          <div class="d-grid gap-2 col-4 mx-auto">
+              <button class="btn btn-danger" type="button">Delete Student</button>
+          </div>
+      </div>
+  </div>
+  {% endif %}
+    
+
+	
+
+{% else %}
+
+	<div class="col-md-6 offset-md-3">
+		<h1>Login</h1>
+
+		<form method="POST" action="{% url 'acs' %}">
+		{% csrf_token%}
+
+
+			  <div class="mb-3">
+			   
+			    <input type="text" class="form-control" name="username" placeholder="Username" required>
+			  </div>
+			  <div class="mb-3">
+			    
+			    <input type="password" class="form-control" name="password" placeholder="Password" required>
+			  </div>
+			  
+			  <button type="submit" class="btn btn-secondary">Login</button>
+			
+		</form>
+	</div>
+	
+{% endif %}
+
+
+
+{% endblock %}
