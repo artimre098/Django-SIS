@@ -1,1 +1,1 @@
-web: gunicorn SISIT.wsgi
+web: gunicorn SISIT.wsgi --log-file -
