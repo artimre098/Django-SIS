@@ -58,3 +58,11 @@ def student_record(request,pk):
 	else:
 		messages.success(request,"You must be logged in to view that page")
 		return redirect('acs')
+	
+def update_record(request,pk):
+	if request.user.is_authenticated:
+		record = Record.objects.get(student_id=pk)
+		return render(request,'admin/student-update.html',{'record':record})
+	else:
+		messages.success(request,"You must be logged in to view that page")
+		return redirect('acs')
