@@ -2,7 +2,7 @@
 body {
   font-family: "Open Sans", serif;
   padding-top: 54px;
-  color: #189b69;
+  color: #222222;
 }
 @media (min-width: 992px) {
   body {
@@ -115,10 +115,10 @@ section.resume-section .resume-item .resume-date {
   }
 }
 .bg-primary {
-  background-color: #399494 !important;
+  background-color: #008374!important;
 }
 .text-primary {
-  color: #399494 !important;
+  color: #008374!important;
 }
 a {
   color: #0e5f20;
@@ -126,5 +126,5 @@ a {
 a:active,
 a:focus,
 a:hover {
-  color: #399494;
+  color: #00b6a1;
 }
