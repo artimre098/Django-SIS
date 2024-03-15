@@ -9,6 +9,9 @@ from .models import Record
 def home(request):
     return render(request,'home.html',{})
 
+def resume(request):
+    return render(request,'my-resume.html',{})
+
 def acs(request):
     	#Check to see if logging in
 	records = Record.objects.all()
