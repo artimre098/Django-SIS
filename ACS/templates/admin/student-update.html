@@ -2,58 +2,17 @@
 {% load static %}
 {% block content %}
 
-<div class="col-md-8 offset-md-3">
-    <!-- <h2>Welcome {{ record.first_name }} {{ record.last_name }}</h2> -->
-    <h5> Update Record for student_id : <span class="text-primary"> {{record.student_id}} </span></h5>
-    <form>
-        <div class="form-group">
-            <label for="exampleInputEmail1">First Name</label>
-            <input type="text" class="form-control" value="{{record.first_name}}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputEmail1">Last Name</label>
-            <input type="text" class="form-control" value="{{record.last_name}}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputEmail1">Year Level</label>
-            <input type="text" class="form-control" value="{{record.year_level}}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-        </div>
-        <div class="form-group">
-            <label for="inputState">Gender</label>
-            <select id="inputState" class="form-control">
-              
-                {% if record.gender == 'Male' %}
-                <option selected>{{record.gender}}</option>
-                <option>Female</option>
-                {% else %}
-                <option selected>{{record.gender}}</option>
-                <option>Male</option>
-                {% endif %}
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-          </div><div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-          </div>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-        </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-        </div>
-        
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+<div class="col-md-6 offset-md-3">
+  <h1> Update Record</h1>
+  <br />
+  <form method="POST" >
+      {% csrf_token%}
+
+      {{ form.as_p }}
+
+  <button type="submit" class="btn btn-secondary">Update Record</button>
+
+  <a href="{% url 'acs' %}"><button class="btn btn-secondary">Back</button></a>
+</form>
 </div>
 {% endblock %}

@@ -81,3 +81,37 @@ class AddRecordForm(forms.ModelForm):
 			record.save()
 
 		return record
+	
+class UpdateRecordForm(forms.ModelForm):
+	
+	YEAR_CHOICES = [
+        ('1st', '1st Year'),
+        ('2nd', '2nd Year'),
+        ('3rd', '3rd Year'),
+        ('4th', '4th Year'),
+    ]
+
+	GENDER_CHOICES = [ ('Male', 'Male'),
+        ('Female', 'Female'),
+        ('Others', 'Others'),
+	]
+	USER_CHOICES = [ ('1', 'Student'),('2', 'Year Level Treasurer'),
+        ('3', 'Department Treasurer'),
+	]
+	BIRTHDAY_CHOICES = [
+        (year) for year in range(1950, 2023)
+    ]
+	first_name =  forms.CharField(required=True,label="",max_length=100,widget=forms.TextInput(attrs={'class':'form-control','placeholder':'First Name'}))
+	last_name = forms.CharField(required=True,label="",max_length=100,widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Last Name'}))
+	year_level = forms.ChoiceField(choices=YEAR_CHOICES, required=True, label="Year Level", widget=forms.Select(attrs={'class': 'form-control', 'placeholder': 'Year Level'}))
+	email = forms.CharField(required=False,label="",max_length=100,widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Email Address'}))
+	gender = forms.ChoiceField(choices=GENDER_CHOICES, required=True, label="Gender", widget=forms.Select(attrs={'class': 'form-control', 'placeholder': 'Gender'}))
+	birthday = forms.DateField(required=False, label="Birthday", widget=forms.SelectDateWidget(attrs={'class': 'form-control'}, years=BIRTHDAY_CHOICES))
+	address =  forms.CharField(required=False,label="",max_length=100,widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Address'}))
+	city = forms.CharField(required=False,label="",max_length=100,widget=forms.TextInput(attrs={'class':'form-control','placeholder':'City'}))
+	phone =  forms.CharField(required=False,label="",max_length=100,widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Cellphone Number'}))
+	role = forms.ChoiceField(choices=USER_CHOICES, required=True, label="", widget=forms.Select(attrs={'class': 'form-control','style':'display:none', 'placeholder': 'Role'}),initial=USER_CHOICES[0][0] )
+    
+	class Meta:
+		model = Record
+		exclude = ("user",)

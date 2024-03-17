@@ -8,39 +8,41 @@
   {% for record in records %}
     {% if record.student_id == user.username %}
         <h2>Welcome {{ record.first_name }} {{ record.last_name }}</h2>
+
+        {% if user.is_staff %}
+          <div class="container">
+              <div class="row">
+                  <div class="d-grid gap-2 col-4 mx-auto">
+                  <a href="{% url 'register' %}" class="btn btn-primary" type="button"> Add Student </a>
+                  </div>
+                  <div class="d-grid gap-2 col-4 mx-auto">
+                      <button class="btn btn-success" type="button">Edit Student</button>
+                  </div>
+                  <div class="d-grid gap-2 col-4 mx-auto">
+                      <button class="btn btn-danger" type="button">Delete Student</button>
+                  </div>
+          </div>
+          </div>
+        {% else %}
+          
+          <div class="container">
+            <div class="row">
+                <div class="d-grid gap-2 col-4 mx-auto">
+                  <a href="{% url 'students' user.username %}" class="btn btn-primary" type="button"> View Profile</a>
+                </div>
+                <div class="d-grid gap-2 col-4 mx-auto">
+                  <a href="{% url 'update_student' record.student_id %}" class="btn btn-success" type="button"> Edit Profile</a>
+                </div>
+                <div class="d-grid gap-2 col-4 mx-auto">
+                    <button class="btn btn-danger" type="button">Delete Student</button>
+                </div>
+            </div>
+        </div>
+        {% endif %}
     {% endif %}
   {% endfor %}
   
-  {% if user.is_staff %}
-    <div class="container">
-        <div class="row">
-            <div class="d-grid gap-2 col-4 mx-auto">
-            <a href="{% url 'register' %}" class="btn btn-primary" type="button"> Add Student </a>
-            </div>
-            <div class="d-grid gap-2 col-4 mx-auto">
-                <button class="btn btn-success" type="button">Edit Student</button>
-            </div>
-            <div class="d-grid gap-2 col-4 mx-auto">
-                <button class="btn btn-danger" type="button">Delete Student</button>
-            </div>
-    </div>
-    </div>
-  {% else %}
-    
-    <div class="container">
-      <div class="row">
-          <div class="d-grid gap-2 col-4 mx-auto">
-            <a href="{% url 'students' user.username %}" class="btn btn-primary" type="button"> View Profile</a>
-          </div>
-          <div class="d-grid gap-2 col-4 mx-auto">
-            <a href="{% url 'update_student' user.username %}" class="btn btn-success" type="button"> Edit Profile</a>
-          </div>
-          <div class="d-grid gap-2 col-4 mx-auto">
-              <button class="btn btn-danger" type="button">Delete Student</button>
-          </div>
-      </div>
-  </div>
-  {% endif %}
+  
     
 
 	

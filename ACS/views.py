@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import SignUpForm, AddRecordForm
+from .forms import SignUpForm, AddRecordForm, UpdateRecordForm
 from .models import Record
 
 # Create your views here.
@@ -53,7 +53,19 @@ def register(request):
         form = AddRecordForm()
         return render(request, 'admin/register.html',{'form':form})
 
-
+def update_record(request,pk):
+	if request.user.is_authenticated:
+		current_record = Record.objects.get(student_id=pk)
+		form = UpdateRecordForm(request.POST or None , instance=current_record)
+		if form.is_valid():
+			form.save()
+			messages.success(request,"Students Records has been Updated")
+			return redirect('acs')
+		return render(request, 'admin/student-update.html',{'form':form})
+	else:
+		messages.success(request,"You Must be Logged In to View That Page")
+		return redirect('acs')
+	
 def student_record(request,pk):
 	if request.user.is_authenticated:
 		record = Record.objects.get(student_id=pk)
@@ -62,10 +74,10 @@ def student_record(request,pk):
 		messages.success(request,"You must be logged in to view that page")
 		return redirect('acs')
 	
-def update_record(request,pk):
-	if request.user.is_authenticated:
-		record = Record.objects.get(student_id=pk)
-		return render(request,'admin/student-update.html',{'record':record})
-	else:
-		messages.success(request,"You must be logged in to view that page")
-		return redirect('acs')
+# def update_record(request,pk):
+# 	if request.user.is_authenticated:
+# 		record = Record.objects.get(student_id=pk)
+# 		return render(request,'admin/student-update.html',{'record':record})
+# 	else:
+# 		messages.success(request,"You must be logged in to view that page")
+# 		return redirect('acs')
