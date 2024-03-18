@@ -9,20 +9,54 @@
     {% if record.student_id == user.username %}
         <h2>Welcome {{ record.first_name }} {{ record.last_name }}</h2>
 
-        {% if user.is_staff %}
+        
+    {% endif %}
+  {% endfor %}
+  {% if user.is_staff %}
           <div class="container">
               <div class="row">
                   <div class="d-grid gap-2 col-4 mx-auto">
                   <a href="{% url 'register' %}" class="btn btn-primary" type="button"> Add Student </a>
                   </div>
-                  <div class="d-grid gap-2 col-4 mx-auto">
-                      <button class="btn btn-success" type="button">Edit Student</button>
-                  </div>
-                  <div class="d-grid gap-2 col-4 mx-auto">
-                      <button class="btn btn-danger" type="button">Delete Student</button>
-                  </div>
+            </div>
           </div>
-          </div>
+          <br /><br />
+          <h3>Student Records</h3>
+          <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
+              <tr class="table-secondary">
+                <th scope="col">Student ID</th>
+                <th scope="col">Student Name</th>
+                <th scope="col">Year Level</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Birthday</th>
+                <th scope="col">Address</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% if records %}
+                  {% for record in records %}
+                    <tr>
+                      <td scope="row">
+                        <a href="{% url 'update_student' record.student_id %}" >
+                          {{record.student_id}}
+                        </a>
+                      </td>
+                      <td>{{record.first_name}} {{record.last_name}}</td>
+                      <td>{{record.year_level}}</td>
+                      <td>{{record.gender}}</td>
+                      <td>{{record.birthday}}</td>
+                      <td>{{record.address}}, {{record.city}}</td>
+                      <td>{{record.email}}</td>
+                      <td>{{record.phone}}</td>
+                    </tr>
+                  {% endfor %}
+              {% endif %}
+              
+            </tbody>
+          </table>
         {% else %}
           
           <div class="container">
@@ -31,50 +65,12 @@
                   <a href="{% url 'students' user.username %}" class="btn btn-primary" type="button"> View Profile</a>
                 </div>
                 <div class="d-grid gap-2 col-4 mx-auto">
-                  <a href="{% url 'update_student' record.student_id %}" class="btn btn-success" type="button"> Edit Profile</a>
+                  <a href="{% url 'update_student' user.username %}" class="btn btn-success" type="button"> Edit Profile</a>
                 </div>
             </div>
         </div>
         {% endif %}
-    {% endif %}
-  {% endfor %}
-  
-  <h2>Student Records</h2>
-  <table class="table table-hover table-bordered">
-    <thead class="thead-dark">
-      <tr class="table-secondary">
-        <th scope="col">Student ID</th>
-        <th scope="col">Student Name</th>
-        <th scope="col">Year Level</th>
-        <th scope="col">Gender</th>
-        <th scope="col">Birthday</th>
-        <th scope="col">Address</th>
-        <th scope="col">Email</th>
-        <th scope="col">Phone</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% if records %}
-          {% for record in records %}
-            <tr>
-              <td scope="row">
-                <a href="{% url 'update_student' record.student_id %}" >
-                  {{record.student_id}}
-                </a>
-              </td>
-              <td>{{record.first_name}} {{record.last_name}}</td>
-              <td>{{record.year_level}}</td>
-              <td>{{record.gender}}</td>
-              <td>{{record.birthday}}</td>
-              <td>{{record.address}}, {{record.city}}</td>
-              <td>{{record.email}}</td>
-              <td>{{record.phone}}</td>
-            </tr>
-          {% endfor %}
-      {% endif %}
-      
-    </tbody>
-  </table>
+ 
     
 
 	
