@@ -33,6 +33,7 @@
                 <th scope="col">Address</th>
                 <th scope="col">Email</th>
                 <th scope="col">Phone</th>
+                <th scope="col" colspan="2">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -40,9 +41,7 @@
                   {% for record in records %}
                     <tr>
                       <td scope="row">
-                        <a href="{% url 'update_student' record.student_id %}" >
                           {{record.student_id}}
-                        </a>
                       </td>
                       <td>{{record.first_name}} {{record.last_name}}</td>
                       <td>{{record.year_level}}</td>
@@ -51,6 +50,8 @@
                       <td>{{record.address}}, {{record.city}}</td>
                       <td>{{record.email}}</td>
                       <td>{{record.phone}}</td>
+                      <td><a class="bi bi-pencil-square text-primary"  href="{% url 'update_student' record.student_id %}"> </a></td>
+                      <td><a class="bi bi-trash3 text-danger"></a></td>
                     </tr>
                   {% endfor %}
               {% endif %}
