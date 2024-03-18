@@ -81,3 +81,14 @@ def student_record(request,pk):
 # 	else:
 # 		messages.success(request,"You must be logged in to view that page")
 # 		return redirect('acs')
+	
+def delete_record(request,pk):
+	delete_it = Record.objects.get(student_id=pk)
+	
+	if request.user.is_authenticated:
+		delete_it.delete()
+		messages.success(request,"Employee Records has been deleted")
+		return redirect('acs')
+	else:
+		messages.success(request,"You Must be Logged In to View That Page")
+		return redirect('acs')
