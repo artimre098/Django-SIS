@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import SignUpForm, AddRecordForm, UpdateRecordForm
 from .models import Record
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -84,9 +85,10 @@ def student_record(request,pk):
 	
 def delete_record(request,pk):
 	delete_it = Record.objects.get(student_id=pk)
-	
+	delete_user = User.objects.get(username=pk)
 	if request.user.is_authenticated:
 		delete_it.delete()
+		delete_user.delete()
 		messages.success(request,"Employee Records has been deleted")
 		return redirect('acs')
 	else:
