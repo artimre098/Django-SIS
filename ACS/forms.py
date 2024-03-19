@@ -1,5 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from django import forms
 from .models import Record
 
@@ -67,6 +68,21 @@ class AddRecordForm(forms.ModelForm):
 		model = Record
 		exclude = ("user",)
 
+	def clean_student_id(self):
+		student_id = self.cleaned_data.get('student_id')
+        # Check if a user with the same student ID already exists
+		if User.objects.filter(username=student_id).exists():
+			raise ValidationError("This student ID is already registered.")
+		return student_id
+
+	def clean(self):
+		cleaned_data = super().clean()
+        # Check if a record with the same student ID already exists
+		student_id = cleaned_data.get('student_id')
+		if Record.objects.filter(student_id=student_id).exists():
+			raise ValidationError("A record with this student ID already exists.")
+		return cleaned_data
+	
 	def save(self, commit=True):
         # Save the Record instance
 		record = super(AddRecordForm, self).save(commit=False)

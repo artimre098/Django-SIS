@@ -49,7 +49,9 @@ def register(request):
             user = authenticate(username=username,password=password)
             messages.success(request,"Student successfully registered")
             return redirect('acs')
-            
+        else:
+            # If form is invalid, render the form template again with the errors
+            return render(request, 'admin/register.html', {'form': form})
     else:
         form = AddRecordForm()
         return render(request, 'admin/register.html',{'form':form})
