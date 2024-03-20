@@ -44,7 +44,7 @@
                   {% for record in records %}
                     <tr>
                       <td scope="row">
-                          {{record.student_id}}
+                        <a class="bi bi-cash-stack text-success"  href="{% url 'update_student' record.student_id %}"> {{record.student_id}}</a>
                       </td>
                       <td>{{record.first_name}} {{record.last_name}}</td>
                       <td>{{record.year_level}}</td>
