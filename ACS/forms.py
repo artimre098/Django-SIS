@@ -2,7 +2,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django import forms
-from .models import Record
+from .models import Record, AccountPayable
 
 class SignUpForm(UserCreationForm):
 	email = forms.EmailField(label="", widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Email Address'}))
@@ -131,3 +131,15 @@ class UpdateRecordForm(forms.ModelForm):
 	class Meta:
 		model = Record
 		exclude = ("user",)
+
+
+class AccountPayableForm(forms.ModelForm):
+    class Meta:
+        model = AccountPayable
+        fields = ['payable_id', 'description', 'due_date', 'amount']
+
+    def clean_amount(self):
+        amount = self.cleaned_data['amount']
+        if amount <= 0:
+            raise forms.ValidationError("Amount must be greater than zero.")
+        return amount

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import SignUpForm, AddRecordForm, UpdateRecordForm
+from .forms import SignUpForm, AddRecordForm, UpdateRecordForm, AccountPayableForm
 from .models import Record
 from django.contrib.auth.models import User
 
@@ -96,3 +96,18 @@ def delete_record(request,pk):
 	else:
 		messages.success(request,"You Must be Logged In to View That Page")
 		return redirect('acs')
+	
+
+def add_account(request):
+    if request.method == 'POST':
+        form = AccountPayableForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request,"Account successfully added")
+            return redirect('acs')
+        else:
+            # If form is invalid, render the form template again with the errors
+            return render(request, 'admin/add-account.html', {'form': form})
+    else:
+        form = AccountPayableForm()
+        return render(request, 'admin/add-account.html',{'form':form})
