@@ -137,6 +137,9 @@ class AccountPayableForm(forms.ModelForm):
     class Meta:
         model = AccountPayable
         fields = ['payable_id', 'description', 'due_date', 'amount']
+        widgets = {
+            'due_date': forms.DateInput(attrs={'type': 'date'})
+        }
 
     def clean_amount(self):
         amount = self.cleaned_data['amount']
