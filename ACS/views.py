@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import SignUpForm, AddRecordForm, UpdateRecordForm, AccountPayableForm
-from .models import Record
+from .models import Record, AccountPayable
 from django.contrib.auth.models import User
 
 # Create your views here.
@@ -72,7 +72,8 @@ def update_record(request,pk):
 def student_record(request,pk):
 	if request.user.is_authenticated:
 		record = Record.objects.get(student_id=pk)
-		return render(request,'admin/student-record.html',{'record':record})
+		accounts = AccountPayable.objects.all()
+		return render(request,'admin/student-record.html',{'record':record,'accounts':accounts})
 	else:
 		messages.success(request,"You must be logged in to view that page")
 		return redirect('acs')
