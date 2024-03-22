@@ -34,9 +34,21 @@
                                     </button>
                                   </h2>
                                   <div id="flush-{{account.id}}" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                                    <div class="accordion-body"> Description: {{ account.description}}<br/> Due date: {{account.due_date}}</div>
-                                  </div>
+                                        
+                                        {% if payments %}
+                                                {% for payment in payments %}
+                                                        {% if record.id == payment.student_id and account.id == payment.payable_id %}
+                                                                <div class="accordion-body"> Description: {{ account.description }}<br/> Due date: {{ account.due_date }} <br /> Amount Paid:{{ payment.amount_paid }}</div>
+                                                        {% endif %}
+                                                {% endfor %}
+                                        {% else %}
+                                                <div class="accordion-body"> Description: {{ account.description }}<br/> Due date: {{ account.due_date }} <br /> Amount Paid: No payments yet for this account.</div>
+                                                
+                                        {% endif %}
                                 </div>
+                                </div> 
+                                                       
+                        
                                         {% endfor %}
                                  {% endif %}
                 </div>
