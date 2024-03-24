@@ -11,4 +11,5 @@ urlpatterns = [
     path('edit-record/<int:pk>',views.update_record, name='update_student'),
     path('delete-record/<int:pk>',views.delete_record, name='delete_student'),
     path('add-account/',views.add_account ,name='add_account'),
+    path('pay-account/<int:student_id>/<int:account_id>/',views.pay_account, name='pay_account'),
 ]

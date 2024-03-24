@@ -113,3 +113,7 @@ def add_account(request):
     else:
         form = AccountPayableForm()
         return render(request, 'admin/add-account.html',{'form':form})
+
+
+def pay_account(request, student_id, account_id):
+	return render(request, 'admin/add-account.html',{'form':form})
