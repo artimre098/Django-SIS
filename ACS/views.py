@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.views.decorators.http import require_http_methods
 from django.contrib import messages
 from .forms import SignUpForm, AddRecordForm, UpdateRecordForm, AccountPayableForm
 from .models import Record, AccountPayable, Payment
@@ -114,6 +115,37 @@ def add_account(request):
         form = AccountPayableForm()
         return render(request, 'admin/add-account.html',{'form':form})
 
-
+@require_http_methods(["GET", "POST"])
 def pay_account(request, student_id, account_id):
-	return render(request, 'admin/add-account.html',{'form':form})
+	if request.user.is_authenticated:
+		if request.method == 'POST':
+			amount_tendered = request.POST.get('amount_tendered')
+			payment_date = request.POST.get('payment_date')
+			try:
+				# Retrieve record and account objects
+				record = Record.objects.get(student_id=student_id)
+				account = AccountPayable.objects.get(id=account_id)
+				
+
+				# Create a new Payment instance
+				payment = Payment.objects.create(
+					student=record,
+					payable=account,
+					amount_paid=amount_tendered,
+					receiver_user_id=request.user.username,  # Assuming you want to save the username of the logged-in user
+					payment_date=payment_date
+				)
+				
+				# Optionally, you can save the payment date from the request or use the current date
+				
+				messages.success(request, "Payment details saved successfully.")
+				return redirect('acs')
+			
+			except (Record.DoesNotExist, AccountPayable.DoesNotExist):
+				messages.error(request, "Record or account not found.")
+				return redirect('acs')
+			
+		
+	else:
+		messages.error(request, "You must be logged in to view that page.")
+		return redirect('acs')

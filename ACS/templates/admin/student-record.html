@@ -47,35 +47,41 @@
                                         {% endif %}
                                 </div>
                                 </div> 
-                                                       
+                
+                                <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="paymentModalLabel">Confirm Payment</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                      </div>
+                                      <form action="{% url 'pay_account' record.student_id account.id %}" method="post">
+                                        {% csrf_token %}
+                                        <div class="modal-body">
+                                            <div class="mb-3">
+                                                <label for="amount-tendered" class="col-form-label">Amount:</label>
+                                                <input type="text" class="form-control" id="amount_tendered" name="amount_tendered">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="payment-date" class="col-form-label">Payment Date:</label>
+                                                <input type="date" class="form-control" id="payment-date" name="payment_date">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Confirm Payment</button>
+                                        </div>
+                                    </form>
+                                    </div>
+                                  </div>
+                                </div>
                         
                                         {% endfor %}
                                  {% endif %}
                 </div>
         </div>
 </div>
-<div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="paymentModalLabel">New message</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="mb-3">
-                  <label for="amount-tendered" class="col-form-label">Amount:</label>
-                  <input type="text" class="form-control" id="amount_tendered">
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Confirm Payment</button>
-            </div>
-          </div>
-        </div>
-      </div>
+
       <script>
         const exampleModal = document.getElementById('paymentModal')
         if (exampleModal) {
@@ -95,5 +101,8 @@
             modalBodyInput.value = 'Enter Amount'
           })
         }
+
+
       </script>
+      
 {% endblock %}
