@@ -39,6 +39,9 @@
                                                 {% for payment in payments %}
                                                         {% if record.id == payment.student_id and account.id == payment.payable_id %}
                                                                 <div class="accordion-body"> Description: {{ account.description }}<br/> Due date: {{ account.due_date }} <br /> Amount Paid:{{ payment.amount_paid }}</div>
+                                                        {% else %}
+                                                                <div class="accordion-body"> Description: {{ account.description }}<br/> Due date: {{ account.due_date }} <br /> Amount Paid: No payments yet for this account. <br /> <a class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#paymentModal" data-bs-whatever="{{ account.payable_id}} - ₱ {{ account.amount}}" href="#"> Pay </a></div>
+                                                                
                                                         {% endif %}
                                                 {% endfor %}
                                         {% else %}
